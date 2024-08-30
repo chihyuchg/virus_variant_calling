@@ -1,1 +1,3 @@
-# gatk_germline_short_variants
+# Virus variant calling pipeline
+
+### Usage
