@@ -7,6 +7,7 @@
     conda activate virus_variant_calling
 
 Run pipeline:
+
     nextflow run main \
     --input <input directory with fastq files>
     --output <outdir>
