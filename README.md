@@ -20,3 +20,6 @@ Run pipeline:
 - Gatk4 (4.3.0.0)
 - hisat2 (2.2.1)
 - SnpEff (5.2)
+
+### References:
+[1] https://www.ncbi.nlm.nih.gov/sra/docs/sars-cov-2-illumina-variant-calling-pipeline/
