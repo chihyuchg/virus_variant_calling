@@ -9,7 +9,7 @@
 include {TRIMMOMATIC        } from '../modules/trim_fq'
 include {HISAT2             } from '../modules/alignment'
 include {HAPLOTYPECALLER    } from '../modules/gatk'
-include {COMBINEVCFS        } from '../modules/gatk'
+include {GENOTYPEGVCFS        } from '../modules/gatk'
 include {VARIANTFILTER      } from '../modules/gatk'  
 include {LEFTALIGNANDTRIMVARIANTS} from '../modules/gatk'
 include {GATKREF           } from '../modules/gatk' 
@@ -46,8 +46,8 @@ workflow COMBINE_VCFS {
 
     main:
         GATKREF (ref_fa, gvcf_ch)
-        COMBINEVCFS (GATKREF.out.refs, gvcf_ch, gvcf_idx_ch)
-        VARIANTFILTER (GATKREF.out.refs, COMBINEVCFS.out.combined_vcf)
+        GENOTYPEGVCFS (GATKREF.out.refs, gvcf_ch, gvcf_idx_ch)
+        VARIANTFILTER (GATKREF.out.refs, GENOTYPEGVCFS.out.combined_vcf)
         LEFTALIGNANDTRIMVARIANTS (GATKREF.out.refs, VARIANTFILTER.out.filtered_vcf)
         SNPEFF (LEFTALIGNANDTRIMVARIANTS.out.trimmed_vcf)
 

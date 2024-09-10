@@ -55,7 +55,7 @@ gatk HaplotypeCaller \
 }
 
 
-process COMBINEVCFS {
+process GENOTYPEGVCFS {
 
 publishDir "${params.output}", mode: 'copy'
 
@@ -71,10 +71,15 @@ script:
 def input_list = gvcfs.collect{"--variant $it"}.join(' ')
 
 """
-
 gatk CombineGVCFs \
 -R ${ref_fa} \
 ${input_list} \
+-O "${params.batch_name}_combined.g.vcf"
+
+
+gatk GenotypeGVCFs \
+-R ${ref_fa} \
+-V "${params.batch_name}_combined.g.vcf" \
 -O "${params.batch_name}_combined.vcf"
 
 """
